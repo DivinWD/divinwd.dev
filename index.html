@@ -75,12 +75,14 @@
 
     <section class="grid">
       <div class="card">
-        <h2>Pipeline overview (from the methodology figure)</h2>
+        <h2>Pipeline overview</h2>
         <ol>
           <li><strong>Data gathering</strong>: select Wikidata scholarly articles; extract DOIs, dates, languages, and author QIDs; collect author attributes (gender, citizenship, employer) and institutions (ROR IDs).</li>
           <li><strong>Data processing</strong>: match records by DOI (publications) and ROR ID (organizations); enrich missing metadata (language, abstract, field of study, institution types).</li>
           <li><strong>Data analysis</strong>: compute diversity metrics and visualize trends over time.</li>
         </ol>
+        <img id="methodology" width="100%" src="divinwd-methodology.png" alt="DivinWD methodology" />
+
         <p class="muted">
           Note: Field of study is assigned using Semantic Scholar labels when available; otherwise inferred from titles/abstracts via S2FOS.
           Gender and nationality can be inferred from names using Genderize when missing in Wikidata.
