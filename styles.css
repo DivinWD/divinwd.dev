@@ -79,3 +79,41 @@ footer {
   opacity: 0.85;
 }
 code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+
+header h1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+}
+
+#logo {
+  height: 120px;
+  width: auto;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+/* Small screens: stack logo above title, reduce logo size */
+@media (max-width: 720px) {
+  header h1 {
+    display: block;
+  }
+
+  #logo {
+    height: 84px;
+    display: block;
+  }
+}
+
+/* Very small screens: slightly smaller logo */
+@media (max-width: 420px) {
+  header h1 {
+    display: block;
+  }
+
+  #logo {
+    height: 72px;
+    display: block;
+  }
+}
