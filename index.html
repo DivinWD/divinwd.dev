@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DivinWD: Exploring the Diversity of Scientific Publications in Wikidata</title>
+  <link rel="stylesheet" href="styles.css">  
+</head>
+
+<body>
+  <header>
+    <h1>
+      <span class="smallcaps">DivinWD</span>: Exploring the Diversity of Scientific Publications in Wikidata
+    </h1>
+    <p class="subtitle">Exploring diversity indicators for scientific publications using Wikidata + external bibliographic sources</p>
+    <span class="pill">Corpus: 2010–2024 focus</span>
+    <span class="pill">Main dimensions: language · field · gender · geography · affiliation</span>
+  </header>
+
+  <main>
+    <section class="grid">
+      <div class="card">
+        <h2>What the paper is about</h2>
+        <p>
+          The paper investigates whether Wikidata can serve as a reliable basis for bibliometric analyses and for computing
+          diversity indicators over the scientific record. It introduces <strong>DivinWD</strong> (DIVersity IN WikiData), a set of
+          metrics and a reproducible pipeline that integrates Wikidata with major bibliographic infrastructures
+          (Crossref, Dimensions, OpenAlex, Scopus, Semantic Scholar) plus organizational data from ROR.
+        </p>
+        <p class="note">
+          Core idea: use Wikidata’s open, community-curated graph as a hub; validate and enrich it using external sources;
+          then compute diversity metrics that can support monitoring inclusivity in science.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>At a glance</h2>
+        <div class="kpi">
+          <div class="box">
+            <div class="num">1.2M+</div>
+            <div class="muted">articles integrated (2010–2024 mentioned as the main analysis window)</div>
+          </div>
+          <div class="box">
+            <div class="num">5</div>
+            <div class="muted">bibliographic sources compared to Wikidata</div>
+          </div>
+          <div class="box">
+            <div class="num">54</div>
+            <div class="muted">distinct languages observed (for language diversity index)</div>
+          </div>
+          <div class="box">
+            <div class="num">23</div>
+            <div class="muted">fields of study (Semantic Scholar S2FOS categories)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Main contributions</h2>
+      <ul>
+        <li>A reproducible pipeline to extract and analyze scholarly publication metadata from Wikidata at scale.</li>
+        <li>A coverage/accuracy comparison between Wikidata and Crossref, Dimensions, OpenAlex, Scopus, and Semantic Scholar.</li>
+        <li>Diversity indicators computed across language, discipline, gender, geography (citizenship), and affiliation type, with practical guidelines.</li>
+      </ul>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Pipeline overview (from the methodology figure)</h2>
+        <ol>
+          <li><strong>Data gathering</strong>: select Wikidata scholarly articles; extract DOIs, dates, languages, and author QIDs; collect author attributes (gender, citizenship, employer) and institutions (ROR IDs).</li>
+          <li><strong>Data processing</strong>: match records by DOI (publications) and ROR ID (organizations); enrich missing metadata (language, abstract, field of study, institution types).</li>
+          <li><strong>Data analysis</strong>: compute diversity metrics and visualize trends over time.</li>
+        </ol>
+        <p class="muted">
+          Note: Field of study is assigned using Semantic Scholar labels when available; otherwise inferred from titles/abstracts via S2FOS.
+          Gender and nationality can be inferred from names using Genderize when missing in Wikidata.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Data selection rules (Wikidata subset)</h2>
+        <ul>
+          <li>Items must be <code>instance of (P31) scholarly article</code>.</li>
+          <li>Authors must be linked via <code>author (P50)</code> (not string-only <code>P2093</code>) and be <code>instance of human (Q5)</code>.</li>
+          <li>Publication year must be consistent when multiple <code>publication date (P577)</code> statements exist.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Key findings (high level)</h2>
+      <ul>
+        <li><strong>Strong coverage biases</strong> in Wikidata scholarly items: overrepresentation of <strong>English-language</strong> publications and of <strong>medicine/hard sciences</strong>.</li>
+        <li><strong>Demographic and geographic skew</strong>: authors are disproportionately from <strong>Western countries</strong> and <strong>male</strong> categories dominate the gender distribution.</li>
+        <li><strong>High matchability by DOI</strong>: most selected Wikidata articles have at least one correspondence in the integrated bibliographic sources; author-count consistency is largely confirmable by at least one external source.</li>
+        <li><strong>Affiliation data is sparse</strong>: only a minority of authors have usable time-aligned employer/affiliation typing for the affiliation diversity dimension.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Diversity metrics</h2>
+      <p>
+        The paper uses the <strong>Shannon diversity index</strong> to capture both richness (how many categories are present)
+        and evenness (how balanced they are). Because some author attributes can belong to multiple categories at once
+        (e.g., multiple citizenships), it adapts the formulation by splitting each author’s contribution across their categories.
+      </p>
+      <ul>
+        <li>Articles: language, field of study</li>
+        <li>Authors: gender, citizenship (geography), affiliation type (ROR taxonomy)</li>
+      </ul>
+      <p class="muted">
+        Indices are normalized to the range [0, 1] using the maximum possible value based on the number of observed categories.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Limitations and cautions highlighted</h2>
+      <ul>
+        <li><strong>Community-curated data quality</strong>: Wikidata constraints are flexible, enabling modeling but allowing inconsistencies.</li>
+        <li><strong>Inference risks</strong>: name-based demographic inference (e.g., Genderize) has known limitations and can misrecognize groups.</li>
+        <li><strong>Privacy/ethics</strong>: diversity monitoring must balance transparency and reproducibility with minimizing exposure of personal data.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Suggested “what to do with this”</h2>
+      <ul>
+        <li>Use Wikidata as an open hub for bibliometrics, but <strong>validate coverage</strong> and <strong>triangulate</strong> with external sources.</li>
+        <li>Report diversity indicators with explicit notes on <strong>missingness</strong>, <strong>inference</strong>, and <strong>selection criteria</strong>.</li>
+        <li>Use the resulting indicators to support auditing and evaluation of DEI initiatives in science (at aggregate levels).</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>
+      © <span id="year"></span> <span class="author">DivinWD authors.</span><br />
+
+      <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+        <img
+          alt="Creative Commons License"
+          style="height:22px;vertical-align:text-bottom"
+          src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <span>
+        This page is licensed under
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+          Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+        </a>.
+      </span>
+    </p>
+  </footer>
+
+  <script>
+    // Optional: keep the year current
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

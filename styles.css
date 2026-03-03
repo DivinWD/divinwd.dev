@@ -1,0 +1,81 @@
+:root { color-scheme: light dark; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.55;
+  margin: 0;
+  padding: 0;
+  background: Canvas;
+  color: CanvasText;
+}
+header, main, footer {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+}
+header {
+  padding-top: 40px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+}
+h1 { margin: 0 0 6px; font-size: 1.9rem; }
+.subtitle { margin: 0; opacity: 0.8; }
+.pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+.smallcaps {
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+section { margin: 22px 0; }
+h2 { font-size: 1.2rem; margin: 0 0 10px; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 860px) {
+  .grid { grid-template-columns: 1.2fr 0.8fr; }
+}
+.card {
+  border: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+  border-radius: 14px;
+  padding: 16px;
+  background: color-mix(in srgb, Canvas 92%, CanvasText 8%);
+}
+ul { margin: 8px 0 0 22px; }
+.kpi {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.kpi .box {
+  border: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+  border-radius: 12px;
+  padding: 12px;
+  background: color-mix(in srgb, Canvas 95%, CanvasText 5%);
+}
+.kpi .num { font-weight: 700; font-size: 1.05rem; }
+.muted { opacity: 0.85; }
+.note {
+  font-size: 0.95rem;
+  border-left: 4px solid color-mix(in srgb, CanvasText 30%, transparent);
+  padding-left: 12px;
+  opacity: 0.9;
+}
+a { color: LinkText; }
+footer {
+  border-top: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+  padding-top: 16px;
+  padding-bottom: 34px;
+  font-size: 0.92rem;
+  opacity: 0.85;
+}
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }

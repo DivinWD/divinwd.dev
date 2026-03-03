@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^datasheet/?$ https://github.com/DivinWD/dataset-resources/blob/main/DATASHEET.md [R=301,L]
