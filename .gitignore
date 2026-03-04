@@ -1,3 +1,6 @@
+# ignore environment file
+deploy/.env
+
 # ignore virtualenv directory
 venv/
 
