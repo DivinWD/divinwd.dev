@@ -75,6 +75,10 @@ source "$scriptdir/.env"
 
   rsync -av \
         --exclude-from='deploy/.deployignore' \
+        --no-owner \
+        --no-group \
+        --no-perms \
+        --omit-dir-times \
           . \
           "$TARGET_DIR"
 )
